@@ -1,8 +1,3 @@
-### Belajar Laravel
+##Hasil Ubahan saya
 
-Menggunakan Github
-
-...
-ini kode
-
-ini kodenya
+Ilham Anugrah

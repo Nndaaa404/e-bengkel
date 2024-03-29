@@ -20,13 +20,15 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('home', [
-        "title" => "Home"
+        "title" => "Home",
+        "active" => 'home'
     ]);
 });
 
 Route::get('/about', function () {
     return view('about', [
         "title" => "About",
+        "active" => 'about',
         "name" => "Ananda Rizky Maulana",
         "email" => "anandaarizkymaulana@gmail.com",
         "image" => "Foto Nndaaa3.jpeg"
@@ -42,22 +44,23 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 route::get('/categories', function() {
     return view('categories', [
         'title' => 'Post Categories',
+        'active' => 'categories',
         'categories' => category::all()
     ]);
 });
 
 route::get('/categories/{category:slug}', function(Category $category) {
-    return view('category', [
-        'title' => $category->name,
-        'posts' => $category->posts,
-        'category' => $category->name
+    return view('posts', [
+        'title' => "Post By Category : $category->name",
+        'active' => 'categories',
+        'posts' => $category->posts->load('category', 'author') // lazy Eager loading
     ]);
 });
 
 
 Route::get('/authors/{author:username}', function(User $author) {
     return view('posts', [
-        'title' => 'User Posts',
-        'posts' => $author->posts,
+        'title' => "Post By Author : $author->name",
+        'posts' => $author->posts->load('category', 'author') // lazy Eager loading
     ]);
 });

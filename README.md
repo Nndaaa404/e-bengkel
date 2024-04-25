@@ -1,3 +1,5 @@
-## di ubah lagi sama nanda
+# Hasil modifikasi dari belajar-app
 
-## Raden menngubah
+## History Commit
+1. Set up basic project structure
+2. Update README.md
